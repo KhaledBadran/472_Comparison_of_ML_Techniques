@@ -22,14 +22,14 @@ def parse_dataset(dataset_number: int):
     test_df = pd.read_csv(os.path.join(data_folder, test_data_file))
 
     # Split the dataframes into X (list of bit values) and y (the class)
-    X_train = training_df.iloc[:, :-1]
-    y_train = training_df.iloc[:, -1:]
+    X_train = training_df.iloc[:, :-1].values.tolist()
+    y_train = training_df.iloc[:, -1:].values.ravel().tolist()
 
-    X_validate = validation_df.iloc[:, :-1]
-    y_validate = validation_df.iloc[:, -1:]
+    X_validate = validation_df.iloc[:, :-1].values.tolist()
+    y_validate = validation_df.iloc[:, -1:].values.ravel().tolist()
 
-    X_test = test_df.iloc[:, :-1]
-    y_test = test_df.iloc[:, -1:]
+    X_test = test_df.iloc[:, :-1].values.tolist()
+    y_test = test_df.iloc[:, -1:].values.ravel().tolist()
 
-    return X_train, y_train.values.ravel(), X_validate, y_validate.values.ravel(), X_test, y_test.values.ravel()
+    return X_train, y_train, X_validate, y_validate, X_test, y_test
 
