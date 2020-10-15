@@ -7,7 +7,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import GridSearchCV
 from dataset_parser import parse_dataset
 from sklearn.neural_network import MLPClassifier
-
+from sklearn.linear_model import Perceptron
 
 class Classifiers:
 
@@ -51,7 +51,7 @@ class Classifiers:
         return
 
     '''
-    This method creates a better performing Decision Tree found by performing grid search to find the best combination
+    Best_DT: This method creates a better performing Decision Tree found by performing grid search to find the best combination
     of hyper-parameters. It also tests the model and stores the results.
     '''
 
@@ -77,7 +77,20 @@ class Classifiers:
 
         return
 
+
+    """
+    PER: This method implements a Perceptron with default parameter values.It also tests the model and stores the results.
+    """
     def PER(self):
+
+        # Train the model
+        classifier = Perceptron()
+        classifier.fit(self.X_train, self.y_train)
+
+        # Test the model and save the results
+        prediction = classifier.predict(self.X_test)
+        self.save_results(prediction, model_name='PER', classifier=classifier, dataset=self.dataset)
+
         return
 
     """
@@ -96,7 +109,7 @@ class Classifiers:
 
         # Test the model and save the results
         prediction = classifier.predict(self.X_test)
-        self.save_results(prediction, model_name='Best-DT', classifier=classifier, dataset=self.dataset)
+        self.save_results(prediction, model_name='Base-MLP', classifier=classifier, dataset=self.dataset)
 
         return
 
