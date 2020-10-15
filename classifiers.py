@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import GridSearchCV
 from dataset_parser import parse_dataset
+from sklearn.neural_network import MLPClassifier
 
 
 class Classifiers:
@@ -79,8 +80,26 @@ class Classifiers:
     def PER(self):
         return
 
+    """
+    Base-MLP: A baseline Multi-Layered Perceptron with 1 hidden layer of 100 neurons,
+    sigmoid/logisticas activation function, stochastic gradient descent, 
+    and default values for the rest of the parameters.
+    """
     def Base_MLP(self):
+
+        # Train the model
+        classifier = MLPClassifier(
+            hidden_layer_sizes=100,
+            activation='logistic',
+            solver='sgd',
+        ).fit(self.X_train, self.y_train)
+
+        # Test the model and save the results
+        prediction = classifier.predict(self.X_test)
+        self.save_results(prediction, model_name='Best-DT', classifier=classifier, dataset=self.dataset)
+
         return
+
 
     def Best_MLP(self):
         return
