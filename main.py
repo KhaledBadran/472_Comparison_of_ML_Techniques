@@ -9,12 +9,14 @@ from classifiers import Classifiers
 
 if __name__ == "__main__":
     X_train, y_train, X_validate, y_validate, X_test, y_test = parse_dataset(dataset_number=1)
-    classifiers = Classifiers(X_train, y_train, X_validate, y_validate, X_test, y_test)
 
-    # call the methods in the Classifiers instance
-    classifiers.GNB()
-    # classifiers.Base_DT()
-    # classifiers.Best_DT()
-    # classifiers.PER()
-    # classifiers.Base_MLP()
-    # classifiers.Best_MLP()
+    for dataset in [1, 2]:
+        classifiers = Classifiers(dataset)
+
+        # call the methods in the Classifiers instance
+        classifiers.GNB()
+        classifiers.Base_DT()
+        classifiers.Best_DT()
+        # classifiers.PER()
+        # classifiers.Base_MLP()
+        # classifiers.Best_MLP()
