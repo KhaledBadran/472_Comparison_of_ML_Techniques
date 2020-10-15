@@ -17,9 +17,9 @@ def parse_dataset(dataset_number: int):
     test_data_file = f'test_with_label_{dataset_number}.csv'
 
     # Create DataFrames for training, validation, and test sets
-    training_df = pd.read_csv(os.path.join(data_folder, training_data_file))
-    validation_df = pd.read_csv(os.path.join(data_folder, validation_data_file))
-    test_df = pd.read_csv(os.path.join(data_folder, test_data_file))
+    training_df = pd.read_csv(os.path.join(data_folder, training_data_file), header=None)
+    validation_df = pd.read_csv(os.path.join(data_folder, validation_data_file), header=None)
+    test_df = pd.read_csv(os.path.join(data_folder, test_data_file), header=None)
 
     # Split the dataframes into X (list of bit values) and y (the class)
     X_train = training_df.iloc[:, :-1].values.tolist()

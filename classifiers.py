@@ -105,9 +105,10 @@ class Classifiers:
         return
 
     def save_results(self, y_predicted, model_name, classifier, dataset):
+
         # Create and save model prediction
         prediction_df = pd.DataFrame(y_predicted)
-        prediction_df.to_csv(f'./results/{model_name}-DS{dataset}.csv')
+        prediction_df.to_csv(f'./results/{model_name}-DS{dataset}.csv', header=False)
 
         # Create and save classification report
         print(classification_report(y_true=self.y_test, y_pred=y_predicted, zero_division=0))
