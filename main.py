@@ -11,5 +11,5 @@ if __name__ == "__main__":
         # classifiers.Base_DT()
         # classifiers.Best_DT()
         # classifiers.PER()
-        classifiers.Base_MLP()
-        # classifiers.Best_MLP()
+        # classifiers.Base_MLP()
+        classifiers.Best_MLP()
