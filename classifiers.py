@@ -127,6 +127,7 @@ class Classifiers:
         return
 
     def Best_MLP(self):
+        # I try different parameters inside mlp.py. These were found to be the most optimal.
         classifier = MLPClassifier(
             hidden_layer_sizes=(100,),
             activation='logistic',

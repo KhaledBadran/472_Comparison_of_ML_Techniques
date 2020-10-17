@@ -21,6 +21,7 @@ def base_mlp(data, output, test_data, test_output):
         hidden_layer_sizes=(100,),
         activation='logistic',
         solver='sgd',
+        max_iter=1000,
     ).fit(X_train, y_train)
     prediction = clf.predict(test_data)
     print(f'Base MLP Prediction:\n{prediction}')
