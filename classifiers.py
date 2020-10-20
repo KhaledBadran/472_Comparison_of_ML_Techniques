@@ -25,12 +25,8 @@ class Classifiers:
     def GNB(self):
         classifier = GaussianNB()
 
-        # Since no optimizations are needed here, we can add the validation set to the training set
-        X_train_extended = self.X_train + self.X_validate
-        y_train_extended = self.y_train + self.y_validate
-
         # Train the model
-        classifier.fit(X_train_extended, y_train_extended)
+        classifier.fit(self.X_train, self.y_train)
 
         # Test the model and save the results
         prediction = classifier.predict(self.X_test)

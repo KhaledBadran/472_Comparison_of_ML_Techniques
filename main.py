@@ -23,6 +23,6 @@ if __name__ == "__main__":
                 print(f"Running: {sys.argv[1]} for dataset {dataset}")
                 clfs[sys.argv[1]]()
         except:
-            print(f"Supported paramater list:\n{clfs.keys()}")
+            print(f"Supported parameter list:\n{clfs.keys()}")
             print("Example: python main.py GNB")
             sys.exit()
