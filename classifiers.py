@@ -116,7 +116,6 @@ class Classifiers:
             hidden_layer_sizes=(100,),
             activation='logistic',
             solver='sgd',
-            max_iter=1000,
         ).fit(self.X_train, self.y_train)
 
         # Test the model and save the results
@@ -129,7 +128,7 @@ class Classifiers:
     def Best_MLP(self):
         # I try different parameters inside mlp.py. These were found to be the most optimal.
         classifier = MLPClassifier(
-            hidden_layer_sizes=(100,),
+            hidden_layer_sizes=(150,),
             activation='logistic',
             solver='adam',
             max_iter=1000,
@@ -147,7 +146,8 @@ class Classifiers:
             f'./results/{model_name}-DS{dataset}.csv', header=False)
 
         # Append confusion matrix to file
-        matrix = pd.DataFrame(confusion_matrix(y_true=self.y_test, y_pred=y_predicted))
+        matrix = pd.DataFrame(confusion_matrix(
+            y_true=self.y_test, y_pred=y_predicted))
         matrix.to_csv(f'./results/{model_name}-DS{dataset}.csv', mode='a')
 
         # Plot confusion matrix

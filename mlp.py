@@ -20,8 +20,7 @@ def base_mlp(data, output, test_data, test_output):
     clf = MLPClassifier(
         hidden_layer_sizes=(100,),
         activation='logistic',
-        solver='sgd',
-        max_iter=1000,
+        solver='adam',
     ).fit(X_train, y_train)
     prediction = clf.predict(test_data)
     print(f'Base MLP Prediction:\n{prediction}')
@@ -53,10 +52,10 @@ networks = {
 
 mlp_param_grid = [
     {
-        'activation': ['logistic', 'identity', 'tanh', 'relu'],
-        'solver': ['sgd', 'adam'],
+        'activation': ['logistic'],
+        'solver': ['adam'],
         'hidden_layer_sizes': [
-            (100,), (100, 100,), (100, 100, 100,),
+            (100,)(150,), (200,)
         ],
         'max_iter': [1000],
     }
@@ -74,21 +73,21 @@ def best_mlp(data, output, test_data, test_output):
     clf = GridSearchCV(MLPClassifier(), mlp_param_grid).fit(X_train, y_train)
 
     print(f' Best parameters found: {clf.best_params_}')
-    prediction = clf.predict(test_data)
-    report = classification_report(
-        y_true=y_test, y_pred=prediction, zero_division=0)
-    print(f'Best MLP Prediction:\n{prediction}')
-    print(
-        f'Best MLP Classification report:\n{report}')
-    print(
-        f'Best MLP Confusion Matrix:\n{confusion_matrix(y_true=y_test, y_pred=prediction)}')
+    # prediction = clf.predict(test_data)
+    # report = classification_report(
+    #     y_true=y_test, y_pred=prediction, zero_division=0)
+    # print(f'Best MLP Prediction:\n{prediction}')
+    # print(
+    #     f'Best MLP Classification report:\n{report}')
+    # print(
+    #     f'Best MLP Confusion Matrix:\n{confusion_matrix(y_true=y_test, y_pred=prediction)}')
 
 
 if __name__ == "__main__":
     X_train, y_train, X_validate, y_validate, X_test, y_test = parse_dataset(1)
-    base_mlp(X_train, y_train, X_test, y_test)
+    #base_mlp(X_train, y_train, X_test, y_test)
     best_mlp(X_train, y_train, X_test, y_test)
 
     X_train, y_train, X_validate, y_validate, X_test, y_test = parse_dataset(2)
-    base_mlp(X_train, y_train, X_test, y_test)
-    best_mlp(X_train, y_train, X_test, y_test)
+    #base_mlp(X_train, y_train, X_test, y_test)
+    #best_mlp(X_train, y_train, X_test, y_test)
