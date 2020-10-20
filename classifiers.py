@@ -159,4 +159,4 @@ class Classifiers:
         plot_confusion_matrix(classifier, self.X_test,
                               self.y_test, cmap=plt.cm.Blues, normalize='true')
         plt.title(f'Confusion matrix for {model_name} classifier')
-        plt.show()
+        plt.savefig(f'./results/{model_name}-DS{dataset}_confusion_matrix')
