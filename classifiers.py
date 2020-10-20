@@ -146,6 +146,16 @@ class Classifiers:
         prediction_df.to_csv(
             f'./results/{model_name}-DS{dataset}.csv', header=False)
 
+        # Append confusion matrix to file
+        matrix = pd.DataFrame(confusion_matrix(y_true=self.y_test, y_pred=y_predicted))
+        matrix.to_csv(f'./results/{model_name}-DS{dataset}.csv', mode='a')
+
+        # Plot confusion matrix
+        plot_confusion_matrix(classifier, self.X_test,
+                              self.y_test, cmap=plt.cm.Blues, normalize='true')
+        plt.title(f'Confusion matrix for {model_name} classifier')
+        plt.savefig(f'./results/{model_name}-DS{dataset}_confusion_matrix')
+
         # Create and save classification report
         print(classification_report(y_true=self.y_test,
                                     y_pred=y_predicted, zero_division=0))
@@ -154,9 +164,5 @@ class Classifiers:
         report_df = pd.DataFrame(report).transpose()
         report_df.to_csv(
             f'./results/{model_name}-DS{dataset}_classification_report.csv')
-
-        # Plot confusion matrix
-        plot_confusion_matrix(classifier, self.X_test,
-                              self.y_test, cmap=plt.cm.Blues, normalize='true')
-        plt.title(f'Confusion matrix for {model_name} classifier')
-        plt.savefig(f'./results/{model_name}-DS{dataset}_confusion_matrix')
+        report_df.to_csv(
+            f'./results/{model_name}-DS{dataset}.csv', mode='a')  # appending results to desired file
